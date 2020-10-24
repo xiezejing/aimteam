@@ -1,6 +1,17 @@
 <template>
-  <a-tabs v-model:activeKey="activeKey" type="editable-card" @edit="onEdit">
-    <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable">
+  <a-tabs
+    v-model:activeKey="activeKey"
+    type="editable-card"
+    hideAdd="true"
+    @edit="onEdit"
+    size="small"
+  >
+    <a-tab-pane
+      v-for="pane in panes"
+      :key="pane.key"
+      :tab="pane.title"
+      :closable="pane.closable"
+    >
       {{ pane.content }}
     </a-tab-pane>
   </a-tabs>
@@ -9,9 +20,14 @@
 export default {
   data() {
     const panes = [
-      { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
-      { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
-      { title: 'Tab 3', content: 'Content of Tab 3', key: '3', closable: false },
+      { title: "Tab 1sssssssssss", content: "Content of Tab 1", key: "1" },
+      { title: "Tab 2", content: "Content of Tab 2", key: "2" },
+      {
+        title: "Tab 3",
+        content: "Content of Tab 3",
+        key: "3",
+        closable: false,
+      },
     ];
     return {
       activeKey: panes[0].key,
@@ -30,7 +46,11 @@ export default {
     add() {
       const panes = this.panes;
       const activeKey = `newTab${this.newTabIndex++}`;
-      panes.push({ title: 'New Tab', content: 'Content of new Tab', key: activeKey });
+      panes.push({
+        title: "New Tab",
+        content: "Content of new Tab",
+        key: activeKey,
+      });
       this.panes = panes;
       this.activeKey = activeKey;
     },
@@ -42,7 +62,7 @@ export default {
           lastIndex = i - 1;
         }
       });
-      const panes = this.panes.filter(pane => pane.key !== targetKey);
+      const panes = this.panes.filter((pane) => pane.key !== targetKey);
       if (panes.length && activeKey === targetKey) {
         if (lastIndex >= 0) {
           activeKey = panes[lastIndex].key;
